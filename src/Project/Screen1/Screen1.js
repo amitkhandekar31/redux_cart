@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import { setList } from '../Components/actions/cartAction'
-import { addToCart } from '../Components/actions/cartAction'
-
+import { addToCart,removeItem,addQuantity,subtractQuantity} from '../Components/actions/cartAction'
+import CartList from './CartList';
 import './Screen1.css';
 
 class Screen1 extends Component {
@@ -32,24 +32,27 @@ class Screen1 extends Component {
 
 	}
 
+	componentWillReceiveProps(NextProps) {
+    console.log('componentWillReceiveProps', NextProps);
+  }
+
 	handleClick = (id) => {
 		this.props.addToCart(id);
 	}
 
+	 handleRemove = (id)=>{
+        this.props.removeItem(id);
+    }
 
-
-	removeItem(id) {
-		var myArr = this.state.list;
-		var index = myArr.findIndex(function (o) {
-			return o.id === id;
-		})
-		if (index !== -1) myArr.splice(index, 1);
-
-		console.log('myArr', myArr);
-	}
+    handleAddQuantity = (id)=>{
+        this.props.addQuantity(id);
+    }
+    handleSubtractQuantity = (id)=>{
+        this.props.subtractQuantity(id);
+    }
 
 	render() {
-		console.log('props', this.props);
+		// console.log('props', this.props);
 
 		return (
 			<div className="container-fluid">
@@ -111,7 +114,8 @@ class Screen1 extends Component {
 
 											</div>
 										</div>
-									</div>
+                                        
+			                        </div>
 
 								</div>
 							)
@@ -119,40 +123,8 @@ class Screen1 extends Component {
 					</div>
 					<div className="col-4 bg2 mt-3">
 						<h1>Carts :</h1>
-						<div className="col">
-							{ this.state.listCart.map((listItem) => {
-								return (
-									<div className="col row noPad bg1 mt-3">
-										<div className="col-6">
-											<img src="./images/veg icon.png" className="vegIcon" />
-											<h1 className="itemName">{ listItem.name }</h1>
-											<span><i className="fas fa-rupee-sign"></i> { listItem.price } </span>
-
-										</div>
-										<div className="col-6 ">
-											<div className="col-8 ">
-												<div className="input-group">
-													<span className="input-group-btn">
-														<button type="button" className="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
-															<span><i className="fas fa-minus"></i></span>
-														</button>
-													</span>
-													<input type="text" id="quantity" name="quantity" className="form-control input-number" value="0" min="1" max="100" />
-													<span className="input-group-btn">
-														<button type="button" className="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
-															<span><i className="fas fa-plus"></i></span>
-														</button>
-													</span>
-													<button onClick={ () => this.removeItem(listItem.id) }><i className="fas fa-trash ml-3"></i></button>
-												</div>
-											</div>
-										</div>
-
-									</div>
-								)
-							}) }
-						</div>
-
+						
+						<CartList />
 					</div>
 				</div>
 			</div>
@@ -164,7 +136,8 @@ const mapStateToProps = (state) => {
 	console.log('state', state)
 
 	return {
-		items: state.items
+		items: state.items,
+		addedItems: state.addedItems
 	}
 }
 
@@ -177,7 +150,13 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		addToCart: (id) => {
 			dispatch(addToCart(id))
-		}
+		},
+		removeItem: (id)=>{dispatch(removeItem(id))},
+
+		addQuantity: (id)=>{dispatch(addQuantity(id))},
+
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+
 	}
 }
 
