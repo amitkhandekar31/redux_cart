@@ -1,0 +1,65 @@
+.noPad{
+	padding: 0;
+	margin: 0;
+}
+.headerS1{
+	height: 25vh;
+	background-color: #333;
+}
+
+.box1{
+	padding-left: 5vw;
+}
+.headerS1 h2{
+	font-size: 2rem;
+	color: #fff;
+}
+
+.header2{
+	color: #fff;
+	font-size: 1rem;
+}
+.bg{
+	background-color: #fff;
+	height: 40px;
+}
+
+.bg1{
+	background-color: #f4f4f4;
+	height: 150px;
+	border: 1px solid #aaa;
+	margin-bottom: 1px;
+}
+
+.bg2{
+	background-color: #ccc;
+	height: 40px;
+}
+.imgP{
+	height: 100px;
+	background-position: center;
+	background-size: contain;
+}
+.vegIcon{
+	width: 25px;
+	height: 25px;
+}
+.itemName{
+	font-weight: 600;
+	margin-bottom: 3px;
+}
+.plus{
+	position: relative;
+	top: -25px;
+	left: 10px;
+
+}
+.quantity{
+	width: 45px;
+    height: 39px;
+    background: #ecf3f3;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    text-align: center;
+    font-size: 22px;
+}
