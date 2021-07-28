@@ -6,29 +6,34 @@ export const SUB_QUANTITY = "SUB_QUANTITY"
 export const ADD_QUANTITY = "ADD_QUANTITY"
 
 
-export const setList= (data)=>{
-return{
-    type: SET_LIST,
-    payload:data
-      }
+export const setList = (data) => {
+    return {
+        type: SET_LIST,
+        payload: data
+    }
 }
-export const addToCart= (id)=>{
-return{
-    type: ADD_TO_CART,
-     id }
+export const addToCart = (id) => {
+    console.log("add to card id", id)
+    return {
+        type: ADD_TO_CART,
+        id
+    }
 }
-export const removeItem= (id)=>{
-return{
-    type: REMOVE_ITEM,
-     id }
+export const removeItem = (id) => {
+    return {
+        type: REMOVE_ITEM,
+        id
+    }
 }
-export const subtractQuantity= (id)=>{
-return{
-    type: SUB_QUANTITY,
-     id }
+export const subtractQuantity = (id) => {
+    return {
+        type: SUB_QUANTITY,
+        id
+    }
 }
-export const addQuantity= (id)=>{
-return{
-    type: ADD_QUANTITY,
-     id }
+export const addQuantity = (id) => {
+    return {
+        type: ADD_QUANTITY,
+        id
+    }
 }
